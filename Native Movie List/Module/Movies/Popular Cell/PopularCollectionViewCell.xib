@@ -11,50 +11,36 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PopularCollectionViewCell" customModule="Native_Movie_List" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+            <rect key="frame" x="0.0" y="0.0" width="150" height="275"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+                <rect key="frame" x="0.0" y="0.0" width="150" height="275"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dpc-iN-dfi">
-                        <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="150" height="275"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="2ji-nn-6Dd">
-                                <rect key="frame" x="0.0" y="0.0" width="150" height="200"/>
-                                <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Poster Template" translatesAutoresizingMaskIntoConstraints="NO" id="BP1-zx-hY7">
-                                        <rect key="frame" x="0.0" y="0.0" width="150" height="140"/>
-                                    </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qgF-aO-uHx">
-                                        <rect key="frame" x="0.0" y="148" width="150" height="52"/>
-                                        <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Star wars: The rise of skywalker" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAT-59-DgT">
-                                                <rect key="frame" x="0.0" y="0.0" width="75" height="52"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9.0" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lxV-5U-bNu">
-                                                <rect key="frame" x="75" y="0.0" width="75" height="52"/>
-                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                                <nil key="textColor"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="52" id="9fs-4X-QTR"/>
-                                        </constraints>
-                                    </stackView>
-                                </subviews>
-                            </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Poster Template" translatesAutoresizingMaskIntoConstraints="NO" id="Szq-Oc-QKM">
+                                <rect key="frame" x="0.0" y="0.0" width="150" height="215"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="215" id="WkY-J7-WFU"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Star wars: The rise of skywalker" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2DJ-l2-oUI">
+                                <rect key="frame" x="6" y="223" width="138" height="38.5"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="2ji-nn-6Dd" firstAttribute="top" secondItem="Dpc-iN-dfi" secondAttribute="top" id="0B1-ql-4yx"/>
-                            <constraint firstItem="2ji-nn-6Dd" firstAttribute="leading" secondItem="Dpc-iN-dfi" secondAttribute="leading" id="X8E-Lh-j2Y"/>
-                            <constraint firstAttribute="trailing" secondItem="2ji-nn-6Dd" secondAttribute="trailing" id="hBM-fg-2V4"/>
-                            <constraint firstAttribute="bottom" secondItem="2ji-nn-6Dd" secondAttribute="bottom" id="ycD-7e-RXT"/>
+                            <constraint firstItem="Szq-Oc-QKM" firstAttribute="top" secondItem="Dpc-iN-dfi" secondAttribute="top" id="1eL-Cp-YCQ"/>
+                            <constraint firstItem="2DJ-l2-oUI" firstAttribute="leading" secondItem="Dpc-iN-dfi" secondAttribute="leading" constant="6" id="3fq-n0-RtC"/>
+                            <constraint firstItem="2DJ-l2-oUI" firstAttribute="top" secondItem="Szq-Oc-QKM" secondAttribute="bottom" constant="8" symbolic="YES" id="Rcn-36-n6G"/>
+                            <constraint firstAttribute="trailing" secondItem="2DJ-l2-oUI" secondAttribute="trailing" constant="6" id="YRE-ht-BtH"/>
+                            <constraint firstAttribute="trailing" secondItem="Szq-Oc-QKM" secondAttribute="trailing" id="oug-D8-Ceu"/>
+                            <constraint firstItem="Szq-Oc-QKM" firstAttribute="leading" secondItem="Dpc-iN-dfi" secondAttribute="leading" id="peA-lN-cgG"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -68,15 +54,14 @@
             </constraints>
             <size key="customSize" width="152" height="246"/>
             <connections>
-                <outlet property="popularImage" destination="BP1-zx-hY7" id="yeD-8h-yei"/>
-                <outlet property="popularRating" destination="lxV-5U-bNu" id="hVs-Wt-SoA"/>
-                <outlet property="popularTitle" destination="OAT-59-DgT" id="niC-KD-uKr"/>
+                <outlet property="popularImage" destination="Szq-Oc-QKM" id="1xQ-bG-UkC"/>
+                <outlet property="popularTitle" destination="2DJ-l2-oUI" id="CY6-nB-ccQ"/>
             </connections>
-            <point key="canvasLocation" x="334.78260869565219" y="268.52678571428572"/>
+            <point key="canvasLocation" x="334.78260869565219" y="268.19196428571428"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="Poster Template" width="1093" height="1606"/>
+        <image name="Poster Template" width="734" height="1088"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

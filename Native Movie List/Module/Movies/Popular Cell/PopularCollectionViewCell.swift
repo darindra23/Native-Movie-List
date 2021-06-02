@@ -16,7 +16,7 @@ class PopularCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        setup()
     }
 
     static func nib() -> UINib {

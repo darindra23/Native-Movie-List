@@ -8,35 +8,32 @@
 import UIKit
 
 class MoviesViewController: UIViewController {
-    @IBOutlet weak var nowPlayingBackgroundImage: UIImageView!
-    @IBOutlet weak var nowPlayingTitle: UILabel!
-    @IBOutlet weak var popularCollection: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
     }
-
 }
 
-private extension MoviesViewController {
+fileprivate extension MoviesViewController {
     func setup() {
-        nowPlayingBackgroundImage.layer.cornerRadius = 15
-
-        popularCollection.dataSource = self
-        popularCollection.delegate = self
-        popularCollection.register(PopularCollectionViewCell.nib(), forCellWithReuseIdentifier: PopularCollectionViewCell.identifier)
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(MoviesCell.nib(), forCellReuseIdentifier: MoviesCell.identifier)
     }
 }
 
-extension MoviesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCollectionViewCell.identifier, for: indexPath)
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: MoviesCell.identifier, for: indexPath)
         return cell
     }
 }
+
+
 
