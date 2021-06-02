@@ -1,0 +1,11 @@
+//
+//  Config.xcconfig
+//  Native Movie List
+//
+//  Created by Darindra R on 28/05/21.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+TMDB_API_KEY = 242c73aaf54937032c040314efb189f6
