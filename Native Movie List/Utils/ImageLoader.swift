@@ -19,7 +19,7 @@ final class ImageLoader {
 
     var image: UIImage? {
         didSet {
-            self.displayImage?()
+            self.bindImage?()
         }
     }
 
