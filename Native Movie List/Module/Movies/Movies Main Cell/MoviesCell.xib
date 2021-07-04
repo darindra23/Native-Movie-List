@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -35,6 +36,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n91-at-5oR">
                                                 <rect key="frame" x="336" y="0.0" width="46" height="30"/>
                                                 <state key="normal" title="See all"/>
+                                                <connections>
+                                                    <action selector="seeAllButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="GA7-ZV-FVr"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -77,9 +81,12 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cOT-65-dN8">
+                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cOT-65-dN8">
                                                 <rect key="frame" x="336" y="0.0" width="46" height="30"/>
                                                 <state key="normal" title="See all"/>
+                                                <connections>
+                                                    <action selector="seeAllButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kYA-dg-rZF"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -101,9 +108,12 @@
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hB-x6-ap6">
+                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hB-x6-ap6">
                                                 <rect key="frame" x="336" y="0.0" width="46" height="30"/>
                                                 <state key="normal" title="See all"/>
+                                                <connections>
+                                                    <action selector="seeAllButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Tag-VW-Nye"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>

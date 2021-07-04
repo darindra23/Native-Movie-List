@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol MoviesCellDelegate: AnyObject {
+    func navigate(viewController: UIViewController)
+}
+
 class MoviesCell: UITableViewCell {
     @IBOutlet weak var nowPlayingImage: UIImageView!
     @IBOutlet weak var nowPlayingTitle: UILabel!
@@ -14,6 +18,9 @@ class MoviesCell: UITableViewCell {
     @IBOutlet weak var upcomingTable: UITableView!
 
     static let identifier = "moviesCell"
+    let viewModel = MoviesCellViewModel()
+
+    weak var delegate: MoviesCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,6 +35,20 @@ class MoviesCell: UITableViewCell {
         return UINib(nibName: "MoviesCell", bundle: nil)
     }
 
+    @IBAction func seeAllButton(_ sender: UIButton) {
+        let vc = SeeAllMoviesController(nibName: SeeAllMoviesController.identifier, bundle: nil)
+
+        switch sender.tag {
+        case 0:
+            vc.title = "Now playing"
+        case 1:
+            vc.title = "Popular"
+        default:
+            vc.title = "Upcoming"
+        }
+
+        delegate?.navigate(viewController: vc)
+    }
 }
 
 fileprivate extension MoviesCell {
@@ -36,6 +57,14 @@ fileprivate extension MoviesCell {
         setupTable()
 
         nowPlayingImage.layer.cornerRadius = 15
+        viewModel.fetch(from: .nowPlaying, page: 1)
+
+        viewModel.reloadData = { [weak self] in
+            guard let self = self else { return }
+            guard let data = self.viewModel.data else { return }
+            self.setupNowPlaying(data: data.data[0])
+            ImageLoader.shared.loadImage(with: data.data[0].backdrop)
+        }
     }
 
     func setupCollection() {
@@ -48,6 +77,14 @@ fileprivate extension MoviesCell {
         upcomingTable.dataSource = self
         upcomingTable.delegate = self
         upcomingTable.register(UpcomingCell.nib(), forCellReuseIdentifier: UpcomingCell.identifier)
+    }
+
+    func setupNowPlaying(data: Movie) {
+        nowPlayingTitle.text = data.title
+        ImageLoader.shared.bindImage = { [weak self] in
+            guard let self = self else { return }
+            self.nowPlayingImage.image = ImageLoader.shared.image
+        }
     }
 }
 
@@ -71,7 +108,5 @@ extension MoviesCell: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: UpcomingCell.identifier, for: indexPath)
         return cell
     }
-
-
 }
 

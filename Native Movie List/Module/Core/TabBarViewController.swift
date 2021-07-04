@@ -17,6 +17,10 @@ class TabBarViewController: UITabBarController {
 
 private extension TabBarViewController {
     func setup() {
+        setViewControllers([setupMoviesTabBarItem(), setupWatchlistTabBarItem()], animated: false)
+    }
+
+    func setupMoviesTabBarItem() -> UINavigationController {
         let movieVC = MoviesViewController(nibName: "Movies", bundle: nil)
         let movieNavVC = UINavigationController(rootViewController: movieVC)
 
@@ -24,13 +28,17 @@ private extension TabBarViewController {
         movieNavVC.tabBarItem = UITabBarItem(title: "Movies", image: UIImage(systemName: "film"), tag: 0)
         movieVC.navigationItem.title = "Movies"
 
+        return movieNavVC
+    }
 
-        let favouriteVC = FavouriteViewController(nibName: "Favourite", bundle: nil)
-        let favouriteNavVC = UINavigationController(rootViewController: favouriteVC)
+    func setupWatchlistTabBarItem() -> UINavigationController {
+        let WatchlistVC = Watchlist(nibName: "Watchlist", bundle: nil)
+        let WatchlistNavVC = UINavigationController(rootViewController: WatchlistVC)
 
-        favouriteNavVC.tabBarItem = UITabBarItem(tabBarSystemItem: .favorites, tag: 1)
-        favouriteNavVC.navigationBar.prefersLargeTitles = true
+        WatchlistNavVC.tabBarItem = UITabBarItem(title: "Watch List", image: UIImage(systemName: "list.and.film"), tag: 1)
+        WatchlistNavVC.navigationBar.prefersLargeTitles = true
+        WatchlistVC.navigationItem.title = "Watch List"
 
-        setViewControllers([movieNavVC, favouriteNavVC], animated: false)
+        return WatchlistNavVC
     }
 }
