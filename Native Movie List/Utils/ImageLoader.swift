@@ -8,28 +8,19 @@
 import Foundation
 import UIKit
 
+private let _imageCache = NSCache<AnyObject, AnyObject>()
+
 final class ImageLoader {
-    static let shared = ImageLoader()
-    private init() { }
+    var imageCache = _imageCache
 
-    private lazy var imageCache: NSCache<AnyObject, AnyObject> = {
-        let cache = NSCache<AnyObject, AnyObject>()
-        return cache
-    }()
+    var image: UIImage?
 
-    var image: UIImage? {
-        didSet {
-            self.bindImage?()
-        }
-    }
-
-    var bindImage: (() -> ())?
-
-    func loadImage(with url: URL) {
+    func loadImage(with url: URL, completion: @escaping () -> ()) {
         let urlString = url.absoluteString
 
         if let imageFromCache = imageCache.object(forKey: urlString as AnyObject) as? UIImage {
             self.image = imageFromCache
+            completion()
             return
         }
 
@@ -38,15 +29,15 @@ final class ImageLoader {
 
             do {
                 let data = try Data(contentsOf: url)
-                guard let image = UIImage(data: data) else {
-                    return
-                }
+                guard let image = UIImage(data: data) else { return }
 
                 self.imageCache.setObject(image, forKey: urlString as AnyObject)
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     self.image = image
+                    completion()
                 }
+
             } catch {
                 print(error.localizedDescription)
             }

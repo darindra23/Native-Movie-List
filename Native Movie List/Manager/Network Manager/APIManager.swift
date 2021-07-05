@@ -70,10 +70,7 @@ fileprivate extension APIManager {
                 completion(.failure(.serializationError))
                 return
             }
-
-            DispatchQueue.main.async {
-                completion(.success(value))
-            }
+            completion(.success(value))
         }.resume()
     }
 }

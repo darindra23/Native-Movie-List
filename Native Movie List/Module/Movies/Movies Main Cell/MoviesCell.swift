@@ -14,11 +14,14 @@ protocol MoviesCellDelegate: AnyObject {
 class MoviesCell: UITableViewCell {
     @IBOutlet weak var nowPlayingImage: UIImageView!
     @IBOutlet weak var nowPlayingTitle: UILabel!
+    @IBOutlet weak var nowPlayingLoading: UIActivityIndicatorView!
     @IBOutlet weak var popularCollection: UICollectionView!
     @IBOutlet weak var upcomingTable: UITableView!
 
     static let identifier = "moviesCell"
-    let viewModel = MoviesCellViewModel()
+
+    private let imageLoader = ImageLoader()
+    private let viewModel = MoviesCellViewModel()
 
     weak var delegate: MoviesCellDelegate?
 
@@ -55,16 +58,9 @@ fileprivate extension MoviesCell {
     func setup() {
         setupCollection()
         setupTable()
+        fetch()
 
         nowPlayingImage.layer.cornerRadius = 15
-        viewModel.fetch(from: .nowPlaying, page: 1)
-
-        viewModel.reloadData = { [weak self] in
-            guard let self = self else { return }
-            guard let data = self.viewModel.data else { return }
-            self.setupNowPlaying(data: data.data[0])
-            ImageLoader.shared.loadImage(with: data.data[0].backdrop)
-        }
     }
 
     func setupCollection() {
@@ -78,12 +74,26 @@ fileprivate extension MoviesCell {
         upcomingTable.delegate = self
         upcomingTable.register(UpcomingCell.nib(), forCellReuseIdentifier: UpcomingCell.identifier)
     }
+}
 
-    func setupNowPlaying(data: Movie) {
-        nowPlayingTitle.text = data.title
-        ImageLoader.shared.bindImage = { [weak self] in
+fileprivate extension MoviesCell {
+    func fetch() {
+        viewModel.fetchAll { [weak self] in
             guard let self = self else { return }
-            self.nowPlayingImage.image = ImageLoader.shared.image
+            guard let nowPlayingData = self.viewModel.nowPlayingData else { return }
+            self.bindNowPlaying(with: nowPlayingData.data[0])
+            self.popularCollection.reloadData()
+            self.upcomingTable.reloadData()
+        }
+    }
+
+    func bindNowPlaying(with data: Movie) {
+        imageLoader.loadImage(with: data.backdrop) { [weak self] in
+            guard let self = self else { return }
+            self.nowPlayingImage.image = self.imageLoader.image
+            self.nowPlayingTitle.text = data.title
+            self.nowPlayingTitle.alpha = 1.0
+            self.nowPlayingLoading.stopAnimating()
         }
     }
 }
@@ -94,7 +104,8 @@ extension MoviesCell: UICollectionViewDataSource, UICollectionViewDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCollectionViewCell.identifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCollectionViewCell.identifier, for: indexPath) as! PopularCollectionViewCell
+        cell.popularMovie = viewModel.popularData?.data[indexPath.row]
         return cell
     }
 }
@@ -105,7 +116,8 @@ extension MoviesCell: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: UpcomingCell.identifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: UpcomingCell.identifier, for: indexPath) as! UpcomingCell
+        cell.upcomingMovie = viewModel.upcomingData?.data[indexPath.row]
         return cell
     }
 }
