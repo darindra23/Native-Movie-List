@@ -10,6 +10,12 @@ import UIKit
 class SeeAllMoviesController: UITableViewController {
 
     static let identifier = "SeeAllMoviesController"
+    let viewModel = SeeAllMoviesViewModel()
+    var endpoint: Endpoint? {
+        didSet {
+            self.tableView.reloadData()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,20 +23,28 @@ class SeeAllMoviesController: UITableViewController {
     }
 
     // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.data?.data.count ?? 0
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: MoviesReusableCell.identifier, for: indexPath) as! MoviesReusableCell
+        cell.configure(with: viewModel.data?.data[indexPath.row])
+        return cell
     }
 }
 
 fileprivate extension SeeAllMoviesController {
     func setup() {
         self.navigationItem.largeTitleDisplayMode = .never
+        self.tableView.register(MoviesReusableCell.nib(), forCellReuseIdentifier: MoviesReusableCell.identifier)
+    }
+
+    func fetchMovie(page: Int) {
+        viewModel.fetch(from: endpoint!, page: page) {
+            DispatchQueue.main.async { [weak self] in
+                self?.tableView.reloadData()
+            }
+        }
     }
 }

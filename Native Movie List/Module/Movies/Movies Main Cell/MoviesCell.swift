@@ -7,10 +7,6 @@
 
 import UIKit
 
-protocol MoviesCellDelegate: AnyObject {
-    func navigate(viewController: UIViewController)
-}
-
 class MoviesCell: UITableViewCell {
     @IBOutlet weak var nowPlayingImage: UIImageView!
     @IBOutlet weak var nowPlayingTitle: UILabel!
@@ -23,7 +19,7 @@ class MoviesCell: UITableViewCell {
     private let imageLoader = ImageLoader()
     private let viewModel = MoviesCellViewModel()
 
-    weak var delegate: MoviesCellDelegate?
+    var navigate: ((UIViewController) -> ())?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,13 +40,19 @@ class MoviesCell: UITableViewCell {
         switch sender.tag {
         case 0:
             vc.title = "Now playing"
+            vc.endpoint = .nowPlaying
+            vc.viewModel.data = viewModel.nowPlayingData
         case 1:
             vc.title = "Popular"
+            vc.endpoint = .popular
+            vc.viewModel.data = viewModel.popularData
         default:
             vc.title = "Upcoming"
+            vc.endpoint = .upcoming
+            vc.viewModel.data = viewModel.upcomingData
         }
 
-        delegate?.navigate(viewController: vc)
+        navigate?(vc)
     }
 }
 
@@ -88,7 +90,7 @@ fileprivate extension MoviesCell {
     }
 
     func bindNowPlaying(with data: Movie) {
-        imageLoader.loadImage(with: data.backdrop) { [weak self] in
+        imageLoader.loadImage(with: data.backdropOriginal) { [weak self] in
             guard let self = self else { return }
             self.nowPlayingImage.image = self.imageLoader.image
             self.nowPlayingTitle.text = data.title
@@ -105,7 +107,7 @@ extension MoviesCell: UICollectionViewDataSource, UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PopularCollectionViewCell.identifier, for: indexPath) as! PopularCollectionViewCell
-        cell.popularMovie = viewModel.popularData?.data[indexPath.row]
+        cell.configure(with: viewModel.popularData?.data[indexPath.row])
         return cell
     }
 }
@@ -117,7 +119,7 @@ extension MoviesCell: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UpcomingCell.identifier, for: indexPath) as! UpcomingCell
-        cell.upcomingMovie = viewModel.upcomingData?.data[indexPath.row]
+        cell.configure(with: viewModel.upcomingData?.data[indexPath.row])
         return cell
     }
 }

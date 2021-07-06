@@ -31,16 +31,11 @@ extension MoviesViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MoviesCell.identifier, for: indexPath) as! MoviesCell
-        cell.delegate = self
+        cell.navigate = { [weak self] viewController in
+            self?.navigationController?.pushViewController(viewController, animated: true)
+        }
         return cell
     }
 }
-
-extension MoviesViewController: MoviesCellDelegate {
-    func navigate(viewController: UIViewController) {
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
-}
-
 
 

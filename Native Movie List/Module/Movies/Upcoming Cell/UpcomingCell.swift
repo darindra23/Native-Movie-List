@@ -10,24 +10,12 @@ import UIKit
 class UpcomingCell: UITableViewCell {
     @IBOutlet weak var upcomingImage: UIImageView!
     @IBOutlet weak var upcomingTitle: UILabel!
+    @IBOutlet weak var upcomingReleaseDate: UILabel!
+    @IBOutlet weak var upcomingOverview: UILabel!
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
 
     static let identifier = "upcomingCell"
     private let imageLoader = ImageLoader()
-
-    var upcomingMovie: Movie? {
-        didSet {
-            if let upcomingMovie = upcomingMovie {
-                imageLoader.loadImage(with: upcomingMovie.poster) { [weak self] in
-                    guard let self = self else { return }
-                    self.upcomingImage.image = self.imageLoader.image
-                    self.upcomingTitle.text = upcomingMovie.title
-                    self.upcomingTitle.alpha = 1
-                    self.loadingIndicator.stopAnimating()
-                }
-            }
-        }
-    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,8 +28,29 @@ class UpcomingCell: UITableViewCell {
 
     override func prepareForReuse() {
         self.upcomingTitle.alpha = 0
+        self.upcomingOverview.alpha = 0
+        self.upcomingReleaseDate.alpha = 0
         self.upcomingImage.image = nil
         self.loadingIndicator.startAnimating()
+    }
+
+    func configure(with model: Movie?) {
+        guard let model = model else { return }
+        imageLoader.loadImage(with: model.poster) { [weak self] in
+            guard let self = self else { return }
+
+            self.upcomingTitle.text = model.title
+            self.upcomingTitle.alpha = 1
+
+            self.upcomingReleaseDate.text = model.releaseDate
+            self.upcomingReleaseDate.alpha = 1
+
+            self.upcomingOverview.text = model.overview
+            self.upcomingOverview.alpha = 1
+
+            self.upcomingImage.image = self.imageLoader.image
+            self.loadingIndicator.stopAnimating()
+        }
     }
 
     static func nib() -> UINib {

@@ -42,6 +42,10 @@ struct Movie: Codable {
         URL(string: "https://image.tmdb.org/t/p/w500\(backdropPath ?? "")")!
     }
 
+    var backdropOriginal: URL {
+        URL(string: "https://image.tmdb.org/t/p/original\(backdropPath ?? "")")!
+    }
+
     var poster: URL {
         URL(string: "https://image.tmdb.org/t/p/w500\(posterPath ?? "")")!
     }

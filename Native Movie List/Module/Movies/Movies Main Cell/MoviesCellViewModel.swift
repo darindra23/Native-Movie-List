@@ -14,7 +14,6 @@ class MoviesCellViewModel {
     private(set) var upcomingData: MovieResponse?
 
     let dispatchGroup = DispatchGroup()
-    var error: NSError?
 
     init(service: APIManager = APIManager.shared) {
         self.service = service
@@ -26,9 +25,9 @@ extension MoviesCellViewModel {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
 
-            self.fetch(from: .nowPlaying, page: 1, dispatch: self.dispatchGroup)
-            self.fetch(from: .popular, page: 1, dispatch: self.dispatchGroup)
-            self.fetch(from: .upcoming, page: 1, dispatch: self.dispatchGroup)
+            self.fetch(from: .nowPlaying)
+            self.fetch(from: .popular)
+            self.fetch(from: .upcoming)
 
             self.dispatchGroup.notify(queue: .main) {
                 completion()
@@ -36,9 +35,9 @@ extension MoviesCellViewModel {
         }
     }
 
-    func fetch(from endpoint: Endpoint, page: Int, dispatch: DispatchGroup) {
-        dispatch.enter()
-        service.fetchMovies(from: endpoint, page: page) { [weak self] (result) in
+    func fetch(from endpoint: Endpoint) {
+        self.dispatchGroup.enter()
+        service.fetchMovies(from: endpoint, page: 1) { [weak self] (result) in
             guard let self = self else { return }
 
             switch result {
@@ -48,9 +47,10 @@ extension MoviesCellViewModel {
                 case .popular: self.popularData = response
                 case .upcoming: self.upcomingData = response
                 }
-            case .failure(let error): self.error = error as NSError
+            case .failure(let error): print(error.localizedDescription)
             }
-            dispatch.leave()
+
+            self.dispatchGroup.leave()
         }
     }
 }
