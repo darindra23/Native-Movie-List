@@ -19,13 +19,21 @@ class SeeAllMoviesViewModel {
 }
 
 extension SeeAllMoviesViewModel {
+    func addPages() {
+        self.pages += 1
+    }
+
     func fetch(from endpoint: Endpoint, page: Int, completion: @escaping () -> ()) {
         service.fetchMovies(from: endpoint, page: page) { [weak self] (result) in
             guard let self = self else { return }
 
             switch result {
             case .success(let response):
-                self.data = response
+                if self.data != nil {
+                    self.data?.data.append(contentsOf: response.data)
+                } else {
+                    self.data = response
+                }
                 completion()
             case .failure(let error): print(error.localizedDescription)
             }

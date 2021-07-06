@@ -22,6 +22,7 @@ class MoviesReusableCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.moviePoster.layer.cornerRadius = 5
     }
 
     func configure(with model: Movie?) {

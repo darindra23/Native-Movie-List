@@ -27,6 +27,20 @@ class SeeAllMoviesController: UITableViewController {
         viewModel.data?.data.count ?? 0
     }
 
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let data = viewModel.data else { return }
+
+        if indexPath.row == data.data.count - 1 && viewModel.pages < data.totalPage {
+            viewModel.addPages()
+            viewModel.fetch(from: endpoint!, page: viewModel.pages) {
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    self.tableView.reloadData()
+                }
+            }
+        }
+    }
+
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MoviesReusableCell.identifier, for: indexPath) as! MoviesReusableCell
         cell.configure(with: viewModel.data?.data[indexPath.row])
@@ -36,7 +50,6 @@ class SeeAllMoviesController: UITableViewController {
 
 fileprivate extension SeeAllMoviesController {
     func setup() {
-        self.navigationItem.largeTitleDisplayMode = .never
         self.tableView.register(MoviesReusableCell.nib(), forCellReuseIdentifier: MoviesReusableCell.identifier)
     }
 
