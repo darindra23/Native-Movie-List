@@ -123,7 +123,7 @@
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3IX-BG-dIh">
                                             <rect key="frame" x="20" y="7.5" width="374" height="50"/>
-                                            <color key="backgroundColor" red="0.011764705882352941" green="0.72941176470588232" blue="0.9882352941176471" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" red="0.015686274509803921" green="0.83137254901960778" blue="0.45490196078431372" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="50" id="gdE-mH-uql"/>
                                             </constraints>
@@ -475,6 +475,7 @@
                                                                 <constraint firstAttribute="height" constant="15" id="e7N-cF-fMa"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                            <color key="tintColor" red="0.015686274510000001" green="0.83137254900000002" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <state key="normal" title="Read More"/>
                                                             <connections>
                                                                 <action selector="synopsisReadMore:" destination="-1" eventType="touchUpInside" id="PCR-vK-wS5"/>

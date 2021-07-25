@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		6E52C9D026A9AC2300334703 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E52C9CF26A9AC2300334703 /* Utils.swift */; };
 		6E52C9D226AC5E4500334703 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E52C9D126AC5E4500334703 /* String.swift */; };
 		6E52C9D426AC767900334703 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E52C9D326AC767900334703 /* UIView.swift */; };
+		6E52C9D626AD41E200334703 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E52C9D526AD41E200334703 /* UIColor.swift */; };
 		6E53A748265CE88A002F846B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E53A747265CE88A002F846B /* AppDelegate.swift */; };
 		6E53A74A265CE88A002F846B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E53A749265CE88A002F846B /* SceneDelegate.swift */; };
 		6E53A752265CE88A002F846B /* Native_Movie_List.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6E53A750265CE88A002F846B /* Native_Movie_List.xcdatamodeld */; };
@@ -50,6 +51,7 @@
 		6E52C9CF26A9AC2300334703 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		6E52C9D126AC5E4500334703 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		6E52C9D326AC767900334703 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
+		6E52C9D526AD41E200334703 /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		6E53A744265CE88A002F846B /* Native Movie List.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Native Movie List.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6E53A747265CE88A002F846B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6E53A749265CE88A002F846B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,7 +105,6 @@
 				97E473AFA72BA44FA2D212A6 /* Pods-Native Movie List.debug.xcconfig */,
 				8AB96BD2B7D1902748EDA8ED /* Pods-Native Movie List.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -240,6 +241,7 @@
 			children = (
 				6E52C9D126AC5E4500334703 /* String.swift */,
 				6E52C9D326AC767900334703 /* UIView.swift */,
+				6E52C9D526AD41E200334703 /* UIColor.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -469,6 +471,7 @@
 				6E53A9BD266782E0002F846B /* MoviesCell.swift in Sources */,
 				6E48B4AD26786E1F0094E8DD /* MoviesReusableCell.swift in Sources */,
 				6E53A752265CE88A002F846B /* Native_Movie_List.xcdatamodeld in Sources */,
+				6E52C9D626AD41E200334703 /* UIColor.swift in Sources */,
 				6E52C9D226AC5E4500334703 /* String.swift in Sources */,
 				6E53A891265F5FE2002F846B /* Watchlist.swift in Sources */,
 				6E53A888265D1969002F846B /* MoviesViewController.swift in Sources */,
@@ -621,6 +624,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6J7HMZNRN3;
 				INFOPLIST_FILE = "Native Movie List/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -641,6 +645,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6J7HMZNRN3;
 				INFOPLIST_FILE = "Native Movie List/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

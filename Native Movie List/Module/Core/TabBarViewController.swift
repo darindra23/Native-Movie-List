@@ -17,6 +17,7 @@ class TabBarViewController: UITabBarController {
 
 private extension TabBarViewController {
     func setup() {
+        tabBar.tintColor = .primary
         setViewControllers([setupMoviesTabBarItem(), setupWatchlistTabBarItem()], animated: false)
     }
 

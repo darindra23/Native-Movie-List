@@ -35,6 +35,7 @@
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n91-at-5oR">
                                                 <rect key="frame" x="336" y="0.0" width="46" height="30"/>
+                                                <color key="tintColor" red="0.015686274510000001" green="0.83137254900000002" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="See all"/>
                                                 <connections>
                                                     <action selector="seeAllButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="GA7-ZV-FVr"/>
@@ -90,6 +91,7 @@
                                             </label>
                                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cOT-65-dN8">
                                                 <rect key="frame" x="336" y="0.0" width="46" height="30"/>
+                                                <color key="tintColor" red="0.015686274510000001" green="0.83137254900000002" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="See all"/>
                                                 <connections>
                                                     <action selector="seeAllButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="kYA-dg-rZF"/>
@@ -121,6 +123,7 @@
                                             </label>
                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6hB-x6-ap6">
                                                 <rect key="frame" x="336" y="0.0" width="46" height="30"/>
+                                                <color key="tintColor" red="0.015686274510000001" green="0.83137254900000002" blue="0.4549019608" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="See all"/>
                                                 <connections>
                                                     <action selector="seeAllButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Tag-VW-Nye"/>
