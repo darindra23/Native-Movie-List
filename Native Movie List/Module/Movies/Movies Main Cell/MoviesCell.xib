@@ -48,6 +48,7 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="8ce-td-jQJ">
                                                 <rect key="frame" x="0.0" y="0.0" width="382" height="175"/>
                                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                                <gestureRecognizers/>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Movie Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SLG-N0-tce">
                                                 <rect key="frame" x="12" y="133" width="131.5" height="30"/>
@@ -98,7 +99,7 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="140" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sFm-ka-n9H">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" style="plain" separatorStyle="none" rowHeight="140" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sFm-ka-n9H">
                                 <rect key="frame" x="16" y="579" width="382" height="306"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <connections>
@@ -174,6 +175,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="nowPlayingContainer" destination="FZE-a6-BeG" id="quZ-0v-dSV"/>
                 <outlet property="nowPlayingImage" destination="8ce-td-jQJ" id="iei-pu-qvr"/>
                 <outlet property="nowPlayingLoading" destination="5AE-xE-d9F" id="x5p-bb-a2Y"/>
                 <outlet property="nowPlayingTitle" destination="SLG-N0-tce" id="5E6-Qo-zwc"/>

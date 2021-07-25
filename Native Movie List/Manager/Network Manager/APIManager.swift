@@ -13,6 +13,8 @@ final class APIManager {
 }
 
 extension APIManager: MovieRequest {
+
+    // MARK: Fetch movies collection
     func fetchMovies(from endpoint: Endpoint, page: Int, completion: @escaping (Result<MovieResponse, APIError>) -> ()) {
         guard let url = URL(string: "\(Constants.BASE_URL)/movie/\(endpoint.rawValue)") else {
             completion(.failure(.invalidEndpoint))
@@ -21,6 +23,7 @@ extension APIManager: MovieRequest {
         self.get(url: url, params: ["page": String(page)], completion: completion)
     }
 
+    // MARK: Fetch one movie
     func fetchMovie(id: Int, completion: @escaping (Result<Movie, APIError>) -> ()) {
         guard let url = URL(string: "\(Constants.BASE_URL)/movie/\(id)") else {
             completion(.failure(.invalidEndpoint))

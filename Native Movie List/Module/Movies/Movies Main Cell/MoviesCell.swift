@@ -8,6 +8,7 @@
 import UIKit
 
 class MoviesCell: UITableViewCell {
+    @IBOutlet weak var nowPlayingContainer: UIView!
     @IBOutlet weak var nowPlayingImage: UIImageView!
     @IBOutlet weak var nowPlayingTitle: UILabel!
     @IBOutlet weak var nowPlayingLoading: UIActivityIndicatorView!
@@ -54,8 +55,15 @@ class MoviesCell: UITableViewCell {
 
         navigate?(vc)
     }
+
+    @IBAction func navigateToNowPlayingMovieDetail(_ sender: UITapGestureRecognizer) {
+        let vc = MovieDetailViewController(nibName: MovieDetailViewController.identifier, bundle: nil)
+        vc.movieId = viewModel.nowPlayingData?.data[0].id
+        navigate?(vc)
+    }
 }
 
+// MARK: Movies View Setup
 fileprivate extension MoviesCell {
     func setup() {
         setupCollection()
@@ -63,6 +71,9 @@ fileprivate extension MoviesCell {
         fetch()
 
         nowPlayingImage.layer.cornerRadius = 15
+
+        let tapped = UITapGestureRecognizer(target: self, action: #selector(self.navigateToNowPlayingMovieDetail(_:)))
+        nowPlayingContainer.addGestureRecognizer(tapped)
     }
 
     func setupCollection() {
@@ -100,9 +111,10 @@ fileprivate extension MoviesCell {
     }
 }
 
+// MARK: Movies Collection View Setup
 extension MoviesCell: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
+        return 8
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -110,17 +122,30 @@ extension MoviesCell: UICollectionViewDataSource, UICollectionViewDelegate {
         cell.configure(with: viewModel.popularData?.data[indexPath.row])
         return cell
     }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = MovieDetailViewController(nibName: MovieDetailViewController.identifier, bundle: nil)
+        vc.movieId = viewModel.popularData?.data[indexPath.row].id
+        navigate?(vc)
+    }
 }
 
+// MARK: Movies Table View Setup
 extension MoviesCell: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return 3
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UpcomingCell.identifier, for: indexPath) as! UpcomingCell
         cell.configure(with: viewModel.upcomingData?.data[indexPath.row])
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = MovieDetailViewController(nibName: MovieDetailViewController.identifier, bundle: nil)
+        vc.movieId = viewModel.upcomingData?.data[indexPath.row].id
+        navigate?(vc)
     }
 }
 

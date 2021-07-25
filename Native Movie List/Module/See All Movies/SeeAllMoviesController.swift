@@ -11,6 +11,7 @@ class SeeAllMoviesController: UITableViewController {
 
     static let identifier = "SeeAllMoviesController"
     let viewModel = SeeAllMoviesViewModel()
+
     var endpoint: Endpoint? {
         didSet {
             self.tableView.reloadData()
@@ -45,6 +46,12 @@ class SeeAllMoviesController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: MoviesReusableCell.identifier, for: indexPath) as! MoviesReusableCell
         cell.configure(with: viewModel.data?.data[indexPath.row])
         return cell
+    }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let vc = MovieDetailViewController(nibName: MovieDetailViewController.identifier, bundle: nil)
+        vc.movieId = viewModel.data?.data[indexPath.row].id
+        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

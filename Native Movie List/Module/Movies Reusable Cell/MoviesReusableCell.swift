@@ -65,7 +65,7 @@ fileprivate extension MoviesReusableCell {
         self.movieReleaseDate.text = model.releaseDate
         self.movieReleaseDate.alpha = 1
 
-        self.movieRating.text = "\(model.voteAverage)"
+        self.movieRating.text = "\(model.voteAverage ?? 0)"
         self.movieRating.alpha = 1
         self.movieRatingImage.alpha = 1
 

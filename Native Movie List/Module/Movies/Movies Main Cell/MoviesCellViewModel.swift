@@ -15,12 +15,17 @@ class MoviesCellViewModel {
 
     let dispatchGroup = DispatchGroup()
 
+    var loading = true
+
+    var showLoading: (() -> ())?
+
     init(service: APIManager = APIManager.shared) {
         self.service = service
     }
 }
 
 extension MoviesCellViewModel {
+    // MARK: Fetch all movies
     func fetchAll(completion: @escaping () -> ()) {
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self = self else { return }
@@ -35,6 +40,7 @@ extension MoviesCellViewModel {
         }
     }
 
+    // MARK: Fetch one movie
     func fetch(from endpoint: Endpoint) {
         self.dispatchGroup.enter()
         service.fetchMovies(from: endpoint, page: 1) { [weak self] (result) in
